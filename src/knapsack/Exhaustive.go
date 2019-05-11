@@ -3,22 +3,24 @@ package knapsack
 import "fmt"
 import "math"
 
-func Exhaustive(){
-	var i = 1
-	var j = 1
-	var CurrentWeight = 0
-	var CurrentValue  = 0
-	var MaxValue = 0
-	var BestSolution = 0
+
+//穷举法解决背包问题
+func Exhaustive()(int, int){
+	var i int = 2
+	var j int = 1
+	var CurrentWeight int = 0
+	var CurrentValue  int = 0
+	var MaxValue  int = 0
+	var BestSolution int = 0
 	var AllSolution   = int( math.Exp2( float64(NumofItems) ) )
-	for i < AllSolution {
-		j = 0
+	for i < AllSolution { //i = 0显然不是最优解，故直接从1开始，并到AllSolution - 1 停止
+		j = 1
 		CurrentWeight = 0
 		CurrentValue = 0
 		for j < NumofItems && CurrentWeight < KCapacity {
-			choise := Choose(i,j)
-			CurrentWeight += Weight[j] * choise
-			CurrentValue += Value[j] *choise
+			var choise = Choose(i, j)
+			CurrentWeight += choise * Weight[j]
+			CurrentValue += choise * Value[j]
 			j += 1
 		}
 		if MaxValue < CurrentValue && CurrentWeight< KCapacity {
@@ -26,27 +28,26 @@ func Exhaustive(){
 			BestSolution = i
 		}
 		i += 1
-
 	}
-	j = 0
-	fmt.Println("\nthe Max Value is :" ,MaxValue)
+	return BestSolution, MaxValue
+}
+
+//获得 x 的二进制表示的第 y位的值，
+func Choose (x , y int) int{
+	var tmpx uint = uint(x) >> uint(y)
+	return int(tmpx & 1)
+}
+
+//输出穷举法结果
+func ExhaustivePrint(best, max int) {
+	var j int = 0
+	fmt.Println("the Exhaustive method : ")
+	fmt.Println("the Max Value is :" ,max)
 	fmt.Println("The Best Choice is ")
 	for j < NumofItems {
-		if Choose(BestSolution, j) == 1 {
+		if Choose(best, j) == 1 {
 			fmt.Printf("[%d, %d]", Weight[j], Value[j])
 		}
 		j += 1
-	}
-
-}
-
-//获得 x % 2 ^ y
-func Choose(x ,y int) int {
-	var tmpy = float64(y)
-	var tmpz = int( math.Exp2(tmpy) )
-	if (x & tmpz) == 0 {
-		return 0
-	} else {
-		return 1
 	}
 }

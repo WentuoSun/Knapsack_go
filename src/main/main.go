@@ -1,15 +1,19 @@
 package main
 
-import (
-	"fmt"
-	"knapsack"
-)
-import "time"
+import "knapsack"
 
 func main() {
-	start := time.Now().UnixNano()
-	knapsack.Exhaustive()
-	end := time.Now().UnixNano()
-	fmt.Printf("\nthe Exhaustive method :%d us", (end-start) /1000 )
+	//start := time.Now().UnixNano()
+
+	//end := time.Now().UnixNano()
+	//fmt.Printf("\nthe Exhaustive method :%d us", (end-start) /1000 )
+	best, max := knapsack.Exhaustive()
+	knapsack.ExhaustivePrint(best, max)
+	knapsack.Dynamic()
+	knapsack.DynamicPrint()
+
+
+
+
 }
 

@@ -8,3 +8,13 @@ var Value  = []int { 0,3,  1, 6, 4, 2, 5, 9, 7,  8,  7}
 const NumofItems int = 11
 
 const KCapacity int = 20
+
+var Choice = [11][21]int {}
+
+func MaxofInt(x, y int) int {
+	if x > y {
+		return x
+	} else {
+		return y
+	}
+}

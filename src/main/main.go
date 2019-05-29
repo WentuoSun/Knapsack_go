@@ -11,7 +11,9 @@ func main() {
 	knapsack.ExhaustivePrint(best, max)
 	knapsack.Dynamic()
 	knapsack.DynamicPrint()
-
+	knapsack.MemoryInitial()
+	knapsack.Memory(1,knapsack.KCapacity)
+	knapsack.MemoryPrint()
 
 
 

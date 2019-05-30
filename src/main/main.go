@@ -14,7 +14,7 @@ func main() {
 	knapsack.MemoryInitial()
 	knapsack.Memory(1,knapsack.KCapacity)
 	knapsack.MemoryPrint()
-
+	knapsack.Back()
 
 
 }

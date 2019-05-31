@@ -15,6 +15,8 @@ func main() {
 	knapsack.Memory(1,knapsack.KCapacity)
 	knapsack.MemoryPrint()
 	knapsack.Back()
+	max, best = knapsack.Montecarlo()
+	knapsack.ExhaustivePrint(best,max)
 
 
 }
